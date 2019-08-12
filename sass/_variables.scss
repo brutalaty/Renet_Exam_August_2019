@@ -1,0 +1,19 @@
+$color-primary: #9e8844;
+$color-secondary: #565c6a;
+$color-white: #fafafa;
+$color-black: #000;
+
+$max-width-content: 1200px;
+$z-main-nav: 100;
+$z-modal: 200;
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+
+  --max-width-content: #{$max-width-content};
+  --z-main-nav: #{$z-main-nav};
+  --z-modal: #{$z-modal};
+}

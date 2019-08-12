@@ -1,0 +1,12 @@
+html {
+  @include respond(md) {
+    font-size: 50%;
+  }
+}
+
+body {
+  background-color: var(--color-white);
+  position: relative;
+
+  min-height: 100vh;
+}
