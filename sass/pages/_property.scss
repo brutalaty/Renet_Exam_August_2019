@@ -136,266 +136,246 @@
     justify-content: center;
     margin-bottom: 4rem;
 
-    &-relative {
+    &-container {
       max-width: $max-width-content;
       width: $max-width-content;
       max-width: var(--max-width-content);
       width: var(--max-width-content);
       position: relative;
-      display: flex;
+
+      display: grid;
+      grid-template-columns: 25rem auto;
+      grid-template-rows: auto auto auto auto;
+      grid-template-areas:
+        "price heading"
+        "inspection body"
+        "agent body"
+        ". body";
 
       @include respond(sm) {
-        flex-direction: column;
-      }
-    }
-
-    &--primary {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 4rem;
-
-      @include respond(sm) {
-        margin-left: 2rem;
-      }
-
-      &-heading {
-        color: $color-primary;
-        color: var(--color-primary);
-        text-align: center;
-        margin-bottom: 6rem;
-      }
-      &-sub-heading {
-      }
-      &-body {
-        max-width: 60rem;
-        margin-right: 2rem;
-        p:first-of-type {
-          text-indent: -0.4rem;
-          &::first-letter {
-            font-size: 4rem;
-            font-weight: 800;
-            color: $color-primary;
-            color: var(--color-primary);
-          }
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          margin-left: 1rem;
-          li {
-            margin-bottom: 1rem;
-            &:before {
-              font-family: "Font Awesome 5 Pro";
-              content: "\f111";
-              display: inline-block;
-              padding-right: 3px;
-              font-weight: 900;
-              color: $color-primary;
-              color: var(--color-primary);
-              margin-right: 1rem;
-            }
-          }
-        }
-      }
-    }
-
-    &--cheatsheet {
-      width: 25rem;
-      min-width: 25rem;
-      margin-top: -6.2rem;
-      margin-right: 5rem;
-
-      color: $color-white;
-      color: var(--color-white);
-
-      @include respond(sm) {
-        margin: 4rem 0;
-        color: $color-secondary;
-
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-
-        .price-card {
-          max-width: 30rem;
-          order: 1;
-          margin-top: 0;
-          flex-grow: 1;
-        }
-
-        .cheatsheet-card {
-          max-width: 30rem;
-          &.inspection-card {
-            order: 3;
-            margin-top: 8rem;
-            flex-grow: 1;
-          }
-
-          &.agent-card {
-            order: 2;
-            margin-top: 0;
-            flex-grow: 1;
-
-            img {
-              width: 100%;
-              height: auto;
-              display: block;
-            }
-          }
-        }
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+          "price agent"
+          "inspection agent"
+          "heading heading"
+          "body body";
       }
 
       @include respond(vs) {
-        margin-top: 0;
-        .price-card {
-          min-width: 100%;
-          order: 1;
-          margin-top: 0;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+          "heading"
+          "price"
+          "inspection"
+          "body"
+          "agent";
+      }
+    }
+
+    &-heading {
+      grid-area: heading;
+    }
+    &-body {
+      grid-area: body;
+    }
+    .price-card {
+      grid-area: price;
+    }
+    .agent-card {
+      grid-area: agent;
+    }
+    .inspection-card {
+      grid-area: inspection;
+    }
+
+    &-heading {
+      color: $color-primary;
+      color: var(--color-primary);
+      text-align: center;
+      margin: 4rem 4rem 0 4rem;
+
+      @include respond(sm) {
+        margin-top: 6rem;
+      }
+      @include respond(vs) {
+        margin-top: 4rem;
+      }
+    }
+
+    &-body {
+      margin: 6rem 4rem 0 4rem;
+      p:first-of-type {
+        text-indent: -0.4rem;
+        &::first-letter {
+          font-size: 4rem;
+          font-weight: 800;
+          color: $color-primary;
+          color: var(--color-primary);
         }
-
-        .cheatsheet-card {
-          min-width: 100%;
-          border-top-width: 0;
-          &.inspection-card {
-            order: 2;
-            margin-top: 0;
-            .cheatsheet-card--body-part {
-              justify-content: space-evenly;
-            }
-          }
-
-          &.agent-card {
-            order: 3;
-            margin-top: 0;
-            display: none;
-            img {
-              width: 100%;
-              height: auto;
-              display: block;
-            }
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-left: 1rem;
+        li {
+          margin-bottom: 1rem;
+          &:before {
+            font-family: "Font Awesome 5 Pro";
+            content: "\f111";
+            display: inline-block;
+            padding-right: 3px;
+            font-weight: 900;
+            color: $color-primary;
+            color: var(--color-primary);
+            margin-right: 1rem;
           }
         }
       }
+    }
 
-      .cheatsheet-card {
-        margin-top: 6.4rem;
-        color: $color-black;
-        color: var(--color-secondary);
-        text-align: center;
-        font-family: merriweather;
-        letter-spacing: 0.1rem;
-        border: 1px solid var(--color-primary);
+    .cheatsheet-card {
+      color: $color-black;
+      color: var(--color-secondary);
+      text-align: center;
+      font-family: merriweather;
+      letter-spacing: 0.1rem;
+      border: 1px solid var(--color-primary);
 
-        &--header {
-          padding: 1rem 0;
-          font-size: 2rem;
-          font-weight: 800;
+      @include respond(sm) {
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+
+      &--header {
+        padding: 1rem 0;
+        font-size: 2rem;
+        font-weight: 800;
+      }
+
+      &--body {
+        background-color: $color-primary;
+        background-color: var(--color-primary);
+        color: $color-white;
+        color: var(--color-white);
+      }
+      &--body-part {
+        &:first-of-type {
+          padding-top: 1.5rem;
         }
+        &:last-of-type {
+          padding-bottom: 1.5rem;
+        }
+        margin: 0rem 2rem;
+        padding: 0.7rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
 
-        &--body {
-          background-color: $color-primary;
-          background-color: var(--color-primary);
+      &--label {
+        font-weight: 800;
+        font-size: 1.7rem;
+      }
+      &--value {
+        color: $color-white;
+        color: var(--color-white);
+        &:visited,
+        &:link {
           color: $color-white;
           color: var(--color-white);
+          text-decoration: none;
         }
-        &--body-part {
-          &:first-of-type {
-            padding-top: 1.5rem;
-          }
-          &:last-of-type {
-            padding-bottom: 1.5rem;
-          }
-          margin: 0rem 2rem;
-          padding: 0.7rem 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      &.inspection-card {
+        margin-top: 0;
+        //countering a spacing error when heading is double lined
+        @media only screen and (min-width: 37.562em) and (max-width: 53.1875em) {
+          margin-top: -6rem;
+        }
+        @media only screen and (min-width: 56.3125em) and (max-width: 66.5em) {
+          margin-top: -6rem;
         }
 
-        &--label {
-          font-weight: 800;
-          font-size: 1.7rem;
+        @include respond(sm) {
+          align-self: end;
         }
-        &--value {
-          color: $color-white;
-          color: var(--color-white);
-          &:visited,
-          &:link {
-            color: $color-white;
-            color: var(--color-white);
-            text-decoration: none;
-          }
-        }
+      }
 
+      &.agent-card {
+        margin-top: 6rem;
+        @include respond(sm) {
+          margin-top: 2rem;
+        }
         img {
           width: 100%;
           height: auto;
           display: block;
         }
       }
+    }
+    .cheatsheet-card-property {
+      margin-bottom: 6rem;
+      .cheatsheet--header {
+        display: flex;
+        flex-wrap: wrap;
+        color: $color-white;
+        color: var(--color-white);
+        text-shadow: 1px 1px 3px #000;
+        margin-top: -6.2rem;
 
-      &-property {
-        .cheatsheet--header {
+        span {
+          flex: 0 0 33%;
           display: flex;
-          flex-wrap: wrap;
-          text-shadow: 1px 1px 3px #000;
+          flex-direction: column;
+          align-items: center;
+          height: 4rem;
+          font-size: 2rem;
+        }
+        .price {
+          flex: 0 0 100%;
+          text-align: center;
+          font-size: 2.5rem;
+          margin-top: 2.2rem;
+          background-color: $color-secondary;
+          background-color: var(--color-secondary);
+        }
+
+        @include respond(sm) {
+          margin-top: 2rem;
+          border: 1px solid $color-secondary;
+          border: 1px solid var(--color-secondary);
+          padding-top: 1.5rem;
+          margin-right: 2rem;
+          margin-left: 2rem;
 
           span {
-            flex: 0 0 33%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 4rem;
-            font-size: 2rem;
-          }
-          .price {
-            flex: 0 0 100%;
-            text-align: center;
-            font-size: 2.5rem;
-            margin-top: 2.2rem;
-            background-color: $color-secondary;
-            background-color: var(--color-secondary);
-          }
-
-          @include respond(sm) {
+            color: $color-secondary;
+            font-size: 2.8rem;
             text-shadow: none;
-            border: 1px solid $color-secondary;
-            border: 1px solid var(--color-secondary);
+            margin-bottom: 3rem;
+          }
 
-            .price {
-              background: $color-secondary;
-              background: var(--color-secondary);
-              color: $color-white;
-              color: var(--color-white);
-              order: 1;
-              margin-top: 0;
-              padding: 2rem 0;
-              font-size: 3rem;
-            }
-            span {
-              order: 2;
-              margin-top: 2rem;
-              margin-bottom: 5rem;
-            }
-            i {
-              padding-top: 1rem;
-            }
+          .price {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 3rem;
           }
         }
-      }
-
-      .agent-name {
-        padding: 0.5rem 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        padding-bottom: 0.5rem;
-        font-weight: 600;
-        font-size: 1.8rem;
+        @include respond(vs) {
+          margin-top: 5rem;
+          span {
+            font-size: 2.5rem;
+          }
+        }
       }
     }
   }
