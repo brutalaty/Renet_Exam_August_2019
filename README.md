@@ -23,7 +23,7 @@ npm run dev
 #### Build the project
 
 ```bash
-npm run lint
+npm run build
 ```
 
 Open public_html/index.html
